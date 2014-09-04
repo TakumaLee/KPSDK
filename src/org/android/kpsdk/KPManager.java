@@ -1,5 +1,6 @@
 package org.android.kpsdk;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.android.kpsdk.listeners.OnArticleCategoryListener;
@@ -34,16 +35,43 @@ public class KPManager {
 		API_KEY = appKey;
 	}
 	
-	public void fetchArticles(int categoryId, OnArticleListener onArticleListener) {
-		List<Article> articleLists = null;
-		if (onArticleListener != null)
-			onArticleListener.onComplete(articleLists);
+	public void fetchArticles(final int categoryId, final OnArticleListener onArticleListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<Article> articleLists = null;
+				articleLists = ArticleManager.getInstance().fetchArticleDetails(categoryId);
+				if (onArticleListener != null)
+					onArticleListener.onComplete(articleLists);
+			}
+		}).start();
+		
 	}
 	
-	public void fetchArticleCategory(OnArticleCategoryListener onArticleCategoryListener) {
-		List<ArticleCategory> articleCategories = null;
-		if (onArticleCategoryListener != null)
-			onArticleCategoryListener.onComplete(articleCategories);
+	public void fetchAllArticles(final List<ArticleCategory> articleCategories, final OnArticleListener onArticleListener) {
+		List<List<Article>> articles = new ArrayList<List<Article>>();
+		for (int i = 0; i < articleCategories.size(); i++) {
+			List<Article> articleLists = null;
+			articleLists = ArticleManager.getInstance().fetchArticleDetails(articleCategories.get(i).getId());
+			articles.add(articleLists);
+		}
+		if (onArticleListener != null)
+			onArticleListener.onAllComplete(articles);
+	}
+	
+	public void fetchArticleCategory(final OnArticleCategoryListener onArticleCategoryListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<ArticleCategory> articleCategories = null;
+				articleCategories = ArticleManager.getInstance().fetchArticleCategory();
+				if (onArticleCategoryListener != null)
+					onArticleCategoryListener.onComplete(articleCategories);
+			}
+		}).start();
+		
 	}
 
 }

@@ -1,8 +1,14 @@
 package org.android.kpsdk.listeners;
 
+import java.util.List;
+
 public abstract class OnActionListener<T> implements OnLoadingListener {
 	
 	public void onComplete(T object) {
+		
+	}
+	
+	public void onAllComplete(List<T> object) {
 		
 	}
 	

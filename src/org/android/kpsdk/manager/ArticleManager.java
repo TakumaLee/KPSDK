@@ -17,13 +17,8 @@ public class ArticleManager {
 	Context context;
 	private static ArticleManager instance;
 	
-	public List<ArticleCategory> articleCategories;
-	public List<List<Article>> articleList;
-	
 	private ArticleManager(Context context) {
 		this.context = context;
-		articleCategories = new ArrayList<ArticleCategory>();
-		articleList = new ArrayList<List<Article>>();
 	}
 	
 	public static synchronized ArticleManager initSingleton(Context context) {
@@ -38,11 +33,8 @@ public class ArticleManager {
 		return instance;
 	}
 	
-	public void downloadArticleCategory() {
-		if (!articleCategories.isEmpty())
-			articleCategories = new ArrayList<ArticleCategory>();
-		if (!articleList.isEmpty())
-			articleList = new ArrayList<List<Article>>();
+	public List<ArticleCategory> fetchArticleCategory() {
+		List<ArticleCategory> articleCategories = new ArrayList<ArticleCategory>();
 		try {
 			JSONObject object = new JSONObject(new HttpGetOOMAsyncTask(context).execute(KPApiFormateUrl.getArticleCategory()).get());
 			JSONArray array = object.getJSONArray("data");
@@ -52,14 +44,13 @@ public class ArticleManager {
 				articleCategory.setId(arrayObject.getInt("id"));
 				articleCategory.setName(arrayObject.getString("name"));
 				articleCategories.add(articleCategory);
-				articleList.add(downloadArticleDetails(articleCategory.getId()));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
+		return articleCategories;
 	}
 	
-	public List<Article> downloadArticleDetails(int id) {
+	public List<Article> fetchArticleDetails(int id) {
 		List<Article> articles = new ArrayList<Article>();
 		try {
 			JSONObject object = new JSONObject(new HttpGetOOMAsyncTask(context).execute(KPApiFormateUrl.getArticleDetails(String.valueOf(id))).get());
@@ -73,7 +64,6 @@ public class ArticleManager {
 				articles.add(article);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return articles;
 	}
