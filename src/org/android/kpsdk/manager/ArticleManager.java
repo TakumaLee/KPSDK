@@ -3,13 +3,13 @@ package org.android.kpsdk.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.android.kpsdk.http.HttpGetOOMAsyncTask;
+import org.android.kpsdk.pojo.Article;
+import org.android.kpsdk.pojo.ArticleCategory;
+import org.android.kpsdk.utils.KPApiFormateUrl;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.taipei.kp.pojo.Article;
-import org.taipei.kp.pojo.ArticleCategory;
-import org.taipei.kp.utils.KPApiFormateUrl;
 
-import takuma.tutorial.http.HttpGetOOMAsyncTask;
 import android.content.Context;
 
 public class ArticleManager {
