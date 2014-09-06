@@ -8,6 +8,7 @@ import org.android.kpsdk.listeners.OnArticleCategoryListener;
 import org.android.kpsdk.listeners.OnArticleListener;
 import org.android.kpsdk.listeners.OnPhotoListener;
 import org.android.kpsdk.listeners.OnVideoCategoryListener;
+import org.android.kpsdk.listeners.OnVideoListener;
 import org.android.kpsdk.manager.AlbumManager;
 import org.android.kpsdk.manager.ArticleManager;
 import org.android.kpsdk.manager.VideoManager;
@@ -15,6 +16,7 @@ import org.android.kpsdk.pojo.Album;
 import org.android.kpsdk.pojo.Article;
 import org.android.kpsdk.pojo.ArticleCategory;
 import org.android.kpsdk.pojo.Photo;
+import org.android.kpsdk.pojo.Video;
 import org.android.kpsdk.pojo.VideoCategory;
 
 import android.content.Context;
@@ -119,6 +121,19 @@ public class KPAndroid {
 				videoCategories = VideoManager.getInstance().fetchVideoList();
 				if (onVideoCategoryListener != null)
 					onVideoCategoryListener.onComplete(videoCategories);
+			}
+		}).start();
+	}
+	
+	public void fetchVideoDetails(final String videoId, final OnVideoListener onVideoListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<Video> videos = null;
+				videos = VideoManager.getInstance().fetchVideoDetails(videoId);
+				if (onVideoListener != null)
+					onVideoListener.onComplete(videos);
 			}
 		}).start();
 	}
