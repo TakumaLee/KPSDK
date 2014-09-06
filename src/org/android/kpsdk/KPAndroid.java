@@ -3,34 +3,40 @@ package org.android.kpsdk;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.android.kpsdk.listeners.OnAlbumListener;
 import org.android.kpsdk.listeners.OnArticleCategoryListener;
 import org.android.kpsdk.listeners.OnArticleListener;
+import org.android.kpsdk.listeners.OnPhotoListener;
+import org.android.kpsdk.manager.AlbumManager;
 import org.android.kpsdk.manager.ArticleManager;
+import org.android.kpsdk.pojo.Album;
 import org.android.kpsdk.pojo.Article;
 import org.android.kpsdk.pojo.ArticleCategory;
+import org.android.kpsdk.pojo.Photo;
 
 import android.content.Context;
 
-public class KPManager {
+public class KPAndroid {
 	
 	Context	context;
-	private	static KPManager instance = null;
+	private	static KPAndroid instance = null;
 	public	String API_KEY;
 	
-	public static synchronized KPManager initSingleton(Context context, String appKey) {
+	public static synchronized KPAndroid initSingleton(Context context, String appKey) {
 		ArticleManager.initSingleton(context);
+		AlbumManager.initSingleton(context);
 		if (instance == null && context != null) {
 			Context appContext = context.getApplicationContext();
-			instance = new KPManager(appContext, appKey);
+			instance = new KPAndroid(appContext, appKey);
 		}
 		return instance;
 	}
 	
-	public static KPManager getInstance() {
+	public static KPAndroid getInstance() {
 		return instance;
 	}
 	
-	private KPManager(Context context, String appKey) {
+	private KPAndroid(Context context, String appKey) {
 		this.context = context;
 		API_KEY = appKey;
 	}
@@ -72,6 +78,32 @@ public class KPManager {
 			}
 		}).start();
 		
+	}
+	
+	public void fetchAlbum(final OnAlbumListener onAlbumListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<Album> albums = null;
+				albums = AlbumManager.getInstance().fetchAlbum();
+				if (onAlbumListener != null)
+					onAlbumListener.onComplete(albums);
+			}
+		}).start();
+	}
+	
+	public void fetchPhoto(final String albumId, final OnPhotoListener onPhotoListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<Photo> photos = null;
+				photos = AlbumManager.getInstance().fetchPhotos(albumId);
+				if (onPhotoListener != null)
+					onPhotoListener.onComplete(photos);
+			}
+		}).start();
 	}
 
 }

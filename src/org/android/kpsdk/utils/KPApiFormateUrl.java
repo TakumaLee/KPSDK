@@ -1,6 +1,6 @@
 package org.android.kpsdk.utils;
 
-import org.android.kpsdk.KPManager;
+import org.android.kpsdk.KPAndroid;
 import org.android.kpsdk.config.Configuration;
 
 import android.util.Log;
@@ -11,7 +11,7 @@ public class KPApiFormateUrl {
 	private static String CATEGORY	= "category/";
 	private static String ALBUM		= "albums/";
 	private static String VIDEOS	= "videos/";
-	private static String ACCESS_TOKEN = "?accessToken=" + KPManager.getInstance().API_KEY;
+	private static String ACCESS_TOKEN = "?accessToken=" + KPAndroid.getInstance().API_KEY;
 	
 	public static String getArticleCategory() {
 		Log.v(TAG, "getArticleCategory()");
