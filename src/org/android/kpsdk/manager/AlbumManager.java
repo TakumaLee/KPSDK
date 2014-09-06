@@ -1,8 +1,11 @@
 package org.android.kpsdk.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.android.kpsdk.config.Configuration;
 import org.android.kpsdk.http.HttpGetOOMAsyncTask;
 import org.android.kpsdk.pojo.Album;
 import org.android.kpsdk.pojo.ArticleCategory;
@@ -65,7 +68,23 @@ public class AlbumManager {
 			JSONObject dataObject = object.getJSONObject("data");
 			JSONArray photoJsonArray = dataObject.getJSONArray("photos");
 			for (int i = 0; i < photoJsonArray.length(); i++) {
-//				JSONObject arrayObject = dataObject.optJSONObject(i);
+				JSONObject arrayObject = photoJsonArray.optJSONObject(i);
+				Photo photo = new Photo();
+				photo.setId(Long.parseLong(arrayObject.getString("id")));
+				photo.setTitle(arrayObject.getString("title"));
+				photo.setIsPrimary(arrayObject.getString("isprimary"));
+				photo.setLink(arrayObject.getString("link"));
+				Map<String, String> imagesMap = new HashMap<String, String>();
+				JSONObject imagesObject = arrayObject.getJSONObject("images");
+				imagesMap.put(Configuration.THUMBNAILS_SMALL, imagesObject.getString(Configuration.THUMBNAILS_SMALL));
+				imagesMap.put(Configuration.THUMBNAILS_SMALL_SQUARE, imagesObject.getString(Configuration.THUMBNAILS_SMALL_SQUARE));
+				imagesMap.put(Configuration.THUMBNAILS_LARGE, imagesObject.getString(Configuration.THUMBNAILS_LARGE));
+				imagesMap.put(Configuration.THUMBNAILS_LARGE_SQUARE, imagesObject.getString(Configuration.THUMBNAILS_LARGE_SQUARE));
+				imagesMap.put(Configuration.THUMBNAILS_MEDIUM, imagesObject.getString(Configuration.THUMBNAILS_MEDIUM));
+				imagesMap.put(Configuration.THUMBNAILS_ORIGINAL, imagesObject.getString(Configuration.THUMBNAILS_ORIGINAL));
+				imagesMap.put(Configuration.THUMBNAILS_THUMBNAIL, imagesObject.getString(Configuration.THUMBNAILS_THUMBNAIL));
+				photo.setImages(imagesMap);
+				photos.add(photo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
