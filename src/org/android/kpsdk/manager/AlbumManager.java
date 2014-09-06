@@ -63,7 +63,8 @@ public class AlbumManager {
 			String string = new HttpGetOOMAsyncTask(context).execute(KPApiFormateUrl.getAlbumsAllPhotos(albumId)).get();
 			JSONObject object = new JSONObject(string);
 			JSONObject dataObject = object.getJSONObject("data");
-			for (int i = 0; i < dataObject.length(); i++) {
+			JSONArray photoJsonArray = dataObject.getJSONArray("photos");
+			for (int i = 0; i < photoJsonArray.length(); i++) {
 //				JSONObject arrayObject = dataObject.optJSONObject(i);
 			}
 		} catch (Exception e) {
