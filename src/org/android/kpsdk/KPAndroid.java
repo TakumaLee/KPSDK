@@ -7,12 +7,15 @@ import org.android.kpsdk.listeners.OnAlbumListener;
 import org.android.kpsdk.listeners.OnArticleCategoryListener;
 import org.android.kpsdk.listeners.OnArticleListener;
 import org.android.kpsdk.listeners.OnPhotoListener;
+import org.android.kpsdk.listeners.OnVideoCategoryListener;
 import org.android.kpsdk.manager.AlbumManager;
 import org.android.kpsdk.manager.ArticleManager;
+import org.android.kpsdk.manager.VideoManager;
 import org.android.kpsdk.pojo.Album;
 import org.android.kpsdk.pojo.Article;
 import org.android.kpsdk.pojo.ArticleCategory;
 import org.android.kpsdk.pojo.Photo;
+import org.android.kpsdk.pojo.VideoCategory;
 
 import android.content.Context;
 
@@ -25,6 +28,7 @@ public class KPAndroid {
 	public static synchronized KPAndroid initSingleton(Context context, String appKey) {
 		ArticleManager.initSingleton(context);
 		AlbumManager.initSingleton(context);
+		VideoManager.initSingleton(context);
 		if (instance == null && context != null) {
 			Context appContext = context.getApplicationContext();
 			instance = new KPAndroid(appContext, appKey);
@@ -102,6 +106,19 @@ public class KPAndroid {
 				photos = AlbumManager.getInstance().fetchPhotos(albumId);
 				if (onPhotoListener != null)
 					onPhotoListener.onComplete(photos);
+			}
+		}).start();
+	}
+	
+	public void fetchVideo(final OnVideoCategoryListener onVideoCategoryListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<VideoCategory> videoCategories = null;
+				videoCategories = VideoManager.getInstance().fetchVideoList();
+				if (onVideoCategoryListener != null)
+					onVideoCategoryListener.onComplete(videoCategories);
 			}
 		}).start();
 	}
