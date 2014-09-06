@@ -9,6 +9,8 @@ The SDK use the "柯文哲 野生官網 Unlimited" api （http://unlimited.kptai
 2. Article
 3. ArticleCategory
 4. Photo
+5. VideoCategory
+6. Video
 
 
 #Listener
@@ -17,13 +19,15 @@ The SDK use the "柯文哲 野生官網 Unlimited" api （http://unlimited.kptai
 2. OnArticleCategoryListener
 3. OnArticleListener
 4. OnPhotoListener
+5. OnVideoCategoryListener
+6. OnVideoListener
 
 #How to Use
 
 In your Application, you need to initial instance by using KPAndroid
 
 ```Java
-	KPAndroid.initSingleton(getApplicationContext(), <YOUR_KP_API_KEY>);
+KPAndroid.initSingleton(getApplicationContext(), <YOUR_KP_API_KEY>);
 ```
 
 and next, you can call function to get any object kp entity from api
