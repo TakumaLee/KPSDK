@@ -22,16 +22,20 @@ The SDK use the "柯文哲 野生官網 Unlimited" api （http://unlimited.kptai
 
 In your Application, you need to initial instance by using KPAndroid
 
-KPAndroid.initSingleton(getApplicationContext);
+```java
+	KPAndroid.initSingleton(getApplicationContext(), <YOUR_KP_API_KEY>);
+	```
 
 and next, you can call function to get any object kp entity from api
 like album, article, article category...etc
 
 EX
 
+```java
 		KPAndroid.getInstance().fetchArticleCategory(new OnArticleCategoryListener() {
 				@Override
 				public void onComplete(List<ArticleCategory> object) {
 					//do your things
 				}
 			});		
+			```
