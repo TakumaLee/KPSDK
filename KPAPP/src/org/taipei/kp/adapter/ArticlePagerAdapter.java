@@ -6,8 +6,6 @@ import org.taipei.kp.activity.WebViewActivity;
 import org.taipei.kp.manager.ArticleManager;
 import org.taipei.kp.pojo.ArticleCategory;
 
-import com.markupartist.android.widget.PullToRefreshListView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
