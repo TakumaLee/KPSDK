@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="lightsteelblue">#dfb0c4de</color>
+    <color name="lightgrey">#d3d3d3</color>
+    <color name="deeplightgrey">#e5e5e5</color>
+    <color name="drama_country_text">#fecabe</color>
+    <color name="gray">#5a6b72</color>
+    <color name="lightblue">#55FDFF</color>
+    <color name="fb_blue">#3b5998</color>
+    <color name="deepgray">#6C6C6C</color><!-- 19FCFF -->
+    <color name="cofee">#f0cda5</color>
+    
+    <color name="alpha_gray">#22000000</color>
+    <color name="alpha">#00000000</color>
+    <color name="red">#FF1C19</color>
+    <color name="orange">#E63F00</color>
+    
+    <color name="actionBarTabText">#0ebfd7</color>
+    <color name="actionBarTabTextUnfocus">#cccccc</color>
+    <color name="actionBarTabBackground">#f4f4f4</color>
+    <color name="drawer_background">#f2f2f2</color>
+    <color name="drawer_text">#989898</color>
+    <color name="lightgray_drama">#a0a0a0</color>
+    <color name="version_color">#cccccc</color>
+    
+</resources>

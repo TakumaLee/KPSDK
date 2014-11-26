@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">柯P野生APP</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    
+    <string-array name="tabs_name">
+        <item >文章清單</item>
+        <item >相簿清單</item>        
+        <item >影片清單</item>
+    </string-array>
+
+</resources>
