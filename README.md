@@ -49,9 +49,9 @@ KPAndroid.getInstance().fetchArticleCategory(new OnArticleCategoryListener() {
 ##說明文章授權條款
 
 - 除 <a name="fenced-code-block">/musics</a> 資料以外 採用 [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) 條款，即為：
-	1. 要有來源標示（柯文哲野生官網）
-	2. 可以自由利用（無論營利與否），具體細節請參考上述條款。
+ 1. 要有來源標示（柯文哲野生官網）
+ 2. 可以自由利用（無論營利與否），具體細節請參考上述條款。
 - /musics 音樂內容授權：
-不可重製
-	1. 僅可在非商業用途前提下播放音樂
-	2. 要有來源(柯文哲野生官網)、平台(soundcloud)與音樂作者標示
+ 1. 不可重製
+ 2. 僅可在非商業用途前提下播放音樂
+ 3. 要有來源(柯文哲野生官網)、平台(soundcloud)與音樂作者標示
