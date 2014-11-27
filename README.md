@@ -3,7 +3,18 @@ KPSDK
 
 The SDK use the ["柯文哲 野生官網 Unlimited" api](http://unlimited.kptaipei.tw/)
 
-#Entity
+# API 選單
+1. 文章類別
+2. 類別內容
+3. 相簿清單
+4. 相簿照片
+5. 影片播放清單
+6. 清單內影片
+7. 台北調音樂清單
+8. 台北調播放清單內歌曲
+9. 競選經費查詢
+
+# Entity
 
 1. Album
 2. Article
@@ -13,7 +24,7 @@ The SDK use the ["柯文哲 野生官網 Unlimited" api](http://unlimited.kptaip
 6. Video
 
 
-#Listener
+# Listener
 
 1. OnAlbumListener
 2. OnArticleCategoryListener
@@ -22,7 +33,7 @@ The SDK use the ["柯文哲 野生官網 Unlimited" api](http://unlimited.kptaip
 5. OnVideoCategoryListener
 6. OnVideoListener
 
-#How to Use
+# How to Use
 
 In your Application, you need to initial instance by using KPAndroid
 
@@ -44,9 +55,9 @@ KPAndroid.getInstance().fetchArticleCategory(new OnArticleCategoryListener() {
 });		
 ```
 
-#資料授權條款
+# 資料授權條款
 
-##說明文章授權條款
+## 說明文章授權條款
 
 - 除 <a name="fenced-code-block">/musics</a> 資料以外 採用 [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) 條款，即為：
  1. 要有來源標示（柯文哲野生官網）
