@@ -3,9 +3,9 @@ package org.android.kpsdk.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.android.kpsdk.entity.Video;
+import org.android.kpsdk.entity.VideoList;
 import org.android.kpsdk.http.HttpGetOOMAsyncTask;
-import org.android.kpsdk.pojo.Video;
-import org.android.kpsdk.pojo.VideoCategory;
 import org.android.kpsdk.utils.KPApiFormateUrl;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,14 +33,14 @@ public class VideoManager {
 		return instance;
 	}
 	
-	public List<VideoCategory> fetchVideoList() {
-		List<VideoCategory> videoCategories = new ArrayList<VideoCategory>();
+	public List<VideoList> fetchVideoList() {
+		List<VideoList> videoCategories = new ArrayList<VideoList>();
 		try {
 			JSONObject object = new JSONObject(new HttpGetOOMAsyncTask(context).execute(KPApiFormateUrl.getVideosList()).get());
 			JSONArray array = object.getJSONArray("data");
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject arrayObject = array.getJSONObject(i);
-				VideoCategory video = new VideoCategory();
+				VideoList video = new VideoList();
 				video.setId(arrayObject.getString("id"));
 				video.setTitle(arrayObject.getString("title"));
 				video.setDescription("description");

@@ -1,8 +1,8 @@
-package org.android.kpsdk.pojo;
+package org.android.kpsdk.entity;
 
 import java.util.Map;
 
-public class VideoCategory {
+public class VideoList {
 	
 	private String id;
 	private String title;

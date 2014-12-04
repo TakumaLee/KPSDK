@@ -3,9 +3,9 @@ package org.android.kpsdk.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.android.kpsdk.entity.Article;
+import org.android.kpsdk.entity.ArticleCategory;
 import org.android.kpsdk.http.HttpGetOOMAsyncTask;
-import org.android.kpsdk.pojo.Article;
-import org.android.kpsdk.pojo.ArticleCategory;
 import org.android.kpsdk.utils.KPApiFormateUrl;
 import org.json.JSONArray;
 import org.json.JSONObject;

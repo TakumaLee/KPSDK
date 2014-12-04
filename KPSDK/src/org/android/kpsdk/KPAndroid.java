@@ -3,21 +3,26 @@ package org.android.kpsdk;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.android.kpsdk.entity.Album;
+import org.android.kpsdk.entity.Article;
+import org.android.kpsdk.entity.ArticleCategory;
+import org.android.kpsdk.entity.Music;
+import org.android.kpsdk.entity.MusicList;
+import org.android.kpsdk.entity.Photo;
+import org.android.kpsdk.entity.Video;
+import org.android.kpsdk.entity.VideoList;
 import org.android.kpsdk.listeners.OnAlbumListener;
 import org.android.kpsdk.listeners.OnArticleCategoryListener;
 import org.android.kpsdk.listeners.OnArticleListener;
+import org.android.kpsdk.listeners.OnMusicCategoryListener;
+import org.android.kpsdk.listeners.OnMusicListener;
 import org.android.kpsdk.listeners.OnPhotoListener;
 import org.android.kpsdk.listeners.OnVideoCategoryListener;
 import org.android.kpsdk.listeners.OnVideoListener;
 import org.android.kpsdk.manager.AlbumManager;
 import org.android.kpsdk.manager.ArticleManager;
+import org.android.kpsdk.manager.MusicManager;
 import org.android.kpsdk.manager.VideoManager;
-import org.android.kpsdk.pojo.Album;
-import org.android.kpsdk.pojo.Article;
-import org.android.kpsdk.pojo.ArticleCategory;
-import org.android.kpsdk.pojo.Photo;
-import org.android.kpsdk.pojo.Video;
-import org.android.kpsdk.pojo.VideoCategory;
 
 import android.content.Context;
 
@@ -31,6 +36,7 @@ public class KPAndroid {
 		ArticleManager.initSingleton(context);
 		AlbumManager.initSingleton(context);
 		VideoManager.initSingleton(context);
+		MusicManager.initSingleton(context);
 		if (instance == null && context != null) {
 			Context appContext = context.getApplicationContext();
 			instance = new KPAndroid(appContext, appKey);
@@ -117,7 +123,7 @@ public class KPAndroid {
 			
 			@Override
 			public void run() {
-				List<VideoCategory> videoCategories = null;
+				List<VideoList> videoCategories = null;
 				videoCategories = VideoManager.getInstance().fetchVideoList();
 				if (onVideoCategoryListener != null)
 					onVideoCategoryListener.onComplete(videoCategories);
@@ -134,6 +140,32 @@ public class KPAndroid {
 				videos = VideoManager.getInstance().fetchVideoDetails(videoId);
 				if (onVideoListener != null)
 					onVideoListener.onComplete(videos);
+			}
+		}).start();
+	}
+	
+	public void fetchMusics(final OnMusicCategoryListener onMusicCategoryListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<MusicList> musicLists = null;
+				musicLists = MusicManager.getInstance().fetchMusicList();
+				if (onMusicCategoryListener != null)
+					onMusicCategoryListener.onComplete(musicLists);
+			}
+		}).start();
+	}
+	
+	public void fetchMusicDetails(final String musicId, final OnMusicListener onMusicListener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				List<Music> musics = null;
+				musics = MusicManager.getInstance().fetchVideoDetails(musicId);
+				if (onMusicListener != null)
+					onMusicListener.onComplete(musics);
 			}
 		}).start();
 	}

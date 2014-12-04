@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.android.kpsdk.config.Configuration;
+import org.android.kpsdk.entity.Album;
+import org.android.kpsdk.entity.ArticleCategory;
+import org.android.kpsdk.entity.Photo;
 import org.android.kpsdk.http.HttpGetOOMAsyncTask;
-import org.android.kpsdk.pojo.Album;
-import org.android.kpsdk.pojo.ArticleCategory;
-import org.android.kpsdk.pojo.Photo;
 import org.android.kpsdk.utils.KPApiFormateUrl;
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -11,6 +11,7 @@ public class KPApiFormateUrl {
 	private static String CATEGORY	= "category/";
 	private static String ALBUM		= "albums/";
 	private static String VIDEOS	= "videos/";
+	private static String MUSIC		= "musics/";
 	private static String ACCESS_TOKEN = "?accessToken=" + KPAndroid.getInstance().API_KEY;
 	
 	public static String getArticleCategory() {
@@ -41,6 +42,16 @@ public class KPApiFormateUrl {
 	public static String getVideoDetails(String videoId) {
 		Log.v(TAG, "getAlbumsAllPhotos()");
 		return Configuration.KP_API_SERVER + VIDEOS + videoId + ACCESS_TOKEN;
+	}
+	
+	public static String getMusicsList() {
+		Log.v(TAG, "getVideos()");
+		return Configuration.KP_API_SERVER + VIDEOS + ACCESS_TOKEN;
+	}
+	
+	public static String getMusicDetails(String musicId) {
+		Log.v(TAG, "getAlbumsAllPhotos()");
+		return Configuration.KP_API_SERVER + VIDEOS + musicId + ACCESS_TOKEN;
 	}
 
 }

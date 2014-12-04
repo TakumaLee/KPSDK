@@ -15,6 +15,25 @@ The SDK use the ["柯文哲 野生官網 Unlimited" api](http://unlimited.kptaip
 8. [台北調播放清單內歌曲](http://unlimited.kptaipei.tw/docs/#api-ch8)
 9. [競選經費查詢](http://unlimited.kptaipei.tw/docs/#api-ch9)
 
+## 詳細注意事項
+### 台北調播放清單內歌曲查詢
+
+給定清單 id 查閱特定播放清單(playlist) 裡面的音樂們(sound cloud)。要特別注意的是「請只用於播放」，請勿進行各種形式的鼓勵下載檔案、備份或重製，也不能拿來營利。
+
+### 競選經費查詢
+
+#### 主要欄位說明
+
+- account : 會計科目
+- start_date : 開始日期(yyyy/mm/dd) 形式
+- end_date : 結束日期(yyyy/mm/dd) 形式
+- start_timestamp : timestamp (毫秒為單位的時間戳記) ，注意是"大於"、不是"超過"
+- end_timestamp : timestamp (毫秒為單位的時間戳記)，但注意是"未達"、不是"小於"。
+- label : 詳細內容
+- price : 金額
+- type : [income|expense] （收入|支出）
+- props : 各種類型會計科目的額外資料，像是人事費有銀行名(bank)跟帳戶(account)， 政治獻金有匿名與否(anonymous) 跟捐贈人數(counts)，支出費用則有傳票(voucher) 等資料。
+
 # Entity
 
 1. <a name="fenced-code-block">Album

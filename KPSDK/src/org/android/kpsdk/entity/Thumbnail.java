@@ -1,4 +1,4 @@
-package org.android.kpsdk.pojo;
+package org.android.kpsdk.entity;
 
 public class Thumbnail {
 	
